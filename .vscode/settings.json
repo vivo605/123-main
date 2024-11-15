@@ -1,0 +1,20 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": false,
+  "actionButtons": {
+    "loadNpmCommands": false,
+    "commands": [
+      {
+        "tooltip": "build",
+        "name": "$(package)",
+        "command": "npm --silent build"
+      },
+      {
+        "tooltip": "run",
+        "name": "$(run)",
+        "color": "green",
+        "command": "npm --silent start"
+      }
+    ]
+  }
+}

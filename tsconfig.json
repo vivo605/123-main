@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    // node.js
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "lib": [
+      "ESNext"
+    ],
+    
+    "outDir": "build",
+    "declaration": true,
+
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": false, // npm:reflect-metadata
+
+    "strict": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": false, // swtch/case break
+  },
+  "include": [
+    "src"
+  ]
+}

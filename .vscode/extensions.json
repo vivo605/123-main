@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "jkearins.action-buttons-ext",
+    "mhutchie.git-graph",
+    "ms-vsliveshare.vsliveshare"
+  ]
+}
