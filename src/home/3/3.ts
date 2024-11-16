@@ -47,7 +47,7 @@ const size = Number(input("Сколько уровней? "))
 for (let str = 1; str <= size; str++) {
   let line = ''
   for (let column = 1; false; column++) { // TODO: количество пробелов
-    line += ' '
+    line += '   '
   }
   for (let column = 1; ; column++) { // TODO: количество звёздочек
     line += '*'

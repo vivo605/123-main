@@ -22,17 +22,19 @@ export{}
 
 const attacking_legions = Number(input("Сколько у тебя легионов в отряде "))
 let score = 0
-let info = 'Атакующий: '
+let info_atack = 'Атакующий: '
+let info_defender = 'Обороняющийся: '
 
 for (let broski = 1; broski <= attacking_legions; broski++) {
   const dice = random(1, 6)
   score += dice
-  info += `${dice} + `
+  info_atack += `${dice} + `
 }
 
-info += ' = '
+info_atack += ' = '
+info_atack += score
 
-print(info)
+print(info_atack)
 
 // Обороняющийся
 // ...
