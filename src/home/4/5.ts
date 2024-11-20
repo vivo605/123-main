@@ -1,5 +1,8 @@
 export {}
 
+// 5. Декомпозиция Mare Nostrum
+// Нужно разделить логику игры на удобные функции, из которых как из конструктора складывается легко читаемая логика
+
 const printResult = (player: string, legions: number, fortres?: number) => {
   // if (...) {
   //   return
