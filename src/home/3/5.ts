@@ -48,13 +48,18 @@ info_atack += atack_score
 info_defender += ' = '
 info_defender += defender_score
 
-let kil_atack_score = `Убитых атакующих: ${Math.floor(atack_score / 5)}`
-let kil_defender_score = `Убитых защищаюхся: ${Math.floor(defender_forts / 5)}`
-
 print(info_atack)
 print(info_defender)
-print(kil_atack_score)
-print(kil_defender_score)
+print(`Убитых атакующих: ${Math.floor(atack_score / 5)}`)
+print( `Убитых защищаюхся: ${Math.floor(defender_forts / 5)}`)
 
 // Обороняющийся
 // ...
+
+/*
+Сколько у тебя легионов в отряде: 3
+Сколько легионов в провинции: 2
+Сколько крепостей в провинции: 0
+Атакующий: 3 + 1 + 1 +  = 5   
+Обороняющийся: 5 + 5 + 0  = 10
+*/
