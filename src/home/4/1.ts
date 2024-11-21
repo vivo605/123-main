@@ -5,3 +5,19 @@ export {}
 // (3 + 5) + (2 + 7)
 // только с одним оператором +
 // (для этого понадобится создать функцию)
+
+const summator = (n1: number, n2 :number) =>{
+  return n1+n2
+}
+
+print(
+  summator(
+    summator(3,5),
+    summator(2,7)
+  )
+)
+
+// const l1 = summator(3,5)
+// const l2 = summator(2,7)
+// const result = summator(l1,l2)
+// print(result)

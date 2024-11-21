@@ -9,3 +9,32 @@ export {}
 // Добрый день, администратор!
 // Здравствуйте, Виталий!
 // Добрый вечер!
+
+// function calulate(n1: number, operator: string, n2: number): number {
+//   if (operator === '+') {
+//     return n1 + n2
+//   }
+//   return NaN
+// }
+
+// const num1 = Number(input("Введите первое число: "))
+// const num2 = Number(input("Введите второе число: "))
+// const operator = input("Введите знак операции (+, -, *, /): ")
+
+// const result = calulate(num1, operator, num2)
+
+function greet(time_day? :number, name? :string) {
+  if (name == ''){
+    if (time_day == 0){
+      print(`ЗДАРОВА))))`)
+    }
+    else if (time_day == 1){
+      print('ssss')
+    }
+  }
+}
+
+const time_day = Number(input("Сколька времени?: "))
+const name = input("Как вас зовут?: ")
+
+greet(time_day, name)
