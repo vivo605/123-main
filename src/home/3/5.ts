@@ -51,7 +51,7 @@ info_defender += defender_score
 print(info_atack)
 print(info_defender)
 print(`Убитых атакующих: ${Math.floor(atack_score / 5)}`)
-print( `Убитых защищаюхся: ${Math.floor(defender_forts / 5)}`)
+print(`Убитых защищаюхся: ${Math.floor(defender_forts / 5)}`)
 
 // Обороняющийся
 // ...
