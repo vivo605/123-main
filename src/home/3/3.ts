@@ -43,16 +43,22 @@ export{}
 // *****
 
 /*
-*
-***
+  *
+ ***
 *****
+
+size 3
+
+str 1 ' ' 2
+str 2 ' ' 1
+str 3 ' ' 0
 */
 
 const size = Number(input("Сколько уровней? "))
 
 for (let str = 1; str <= size; str++) {
   let line = ''
-  for (let column = 1; false; column++) { // TODO: количество пробелов
+  for (let column = 1; column <= size-str; column++) {
     line += ' '
   }
   for (let column = 1; column <= 1+(2*(str-1)); column++) {

@@ -15,7 +15,19 @@ function calulate(n1: number, operator: string, n2: number): number {
   if (operator === '+') {
     return n1 + n2
   }
-  return NaN
+  if (operator === '-') {
+    return n1 - n2
+  }
+  if (operator === '*') {
+    return n1 * n2
+  }
+  if (operator === '/') {
+    return n1 / n2
+  }
+  else{
+    print("ТЫ ЛОМАЕШЬ МОЮ ПРОГРАММУ Я ТЕБЯ БОЮСЬ!!!!")
+    return 0
+  }
 }
 
 const num1 = Number(input("Введите первое число: "))
@@ -23,6 +35,7 @@ const num2 = Number(input("Введите второе число: "))
 const operator = input("Введите знак операции (+, -, *, /): ")
 
 const result = calulate(num1, operator, num2)
+print(result)
 
 // NaN
 // Infinity

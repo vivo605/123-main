@@ -46,10 +46,19 @@ for (let i = 1; i <= size; i++) {
 }
 
 for (let row = 1; row <= size; row++) {
-  table += `\n${row} | `
-  for (let column = 1; column >= size ; column++) {
-    // TODO
+  table += `\n${row} |`
+  for (let column = 1; column <= size; column++) {
+    const lol = row*column
+    if (lol <= 9){
+      table += '  '
+    }
+    else{
+      table += ' '
+    }
+    table += lol
   }
 }
 
 print(table)
+
+// TODO: цифры должны быть 

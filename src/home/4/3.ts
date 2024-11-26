@@ -29,7 +29,7 @@ function greet(time_day? :number, name? :string) {
       print(`ЗДАРОВА))))`)
     }
     else if (time_day == 1){
-      print('ssss')
+      print('Здраствуйте')
     }
   }
 }
