@@ -23,7 +23,14 @@ export {}
 
 // const result = calulate(num1, operator, num2)
 
-function greet(time_day? :number, name? :string) {
+function greet(time_day ?:number, name ?:string) {
+  if (time_day === undefined) {
+    print(`ЗДАРОВА))))`)
+  } else {
+    if (time_day <= 1){
+      print('Здраствуйте')
+    }
+  }
   if (name == ''){
     if (time_day == 0){
       print(`ЗДАРОВА))))`)
@@ -37,4 +44,4 @@ function greet(time_day? :number, name? :string) {
 const time_day = Number(input("Сколька времени?: "))
 const name = input("Как вас зовут?: ")
 
-greet(time_day, name)
+greet()

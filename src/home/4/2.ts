@@ -24,9 +24,8 @@ function calulate(n1: number, operator: string, n2: number): number {
   if (operator === '/') {
     return n1 / n2
   }
-  else{
-    print("ТЫ ЛОМАЕШЬ МОЮ ПРОГРАММУ Я ТЕБЯ БОЮСЬ!!!!")
-    return 0
+  else {
+    return NaN
   }
 }
 
@@ -35,7 +34,17 @@ const num2 = Number(input("Введите второе число: "))
 const operator = input("Введите знак операции (+, -, *, /): ")
 
 const result = calulate(num1, operator, num2)
-print(result)
+
+if (isNaN(result)) {
+  print("ТЫ ЛОМАЕШЬ МОЮ ПРОГРАММУ Я ТЕБЯ БОЮСЬ!!!!")
+}
+else if (!isFinite(result)) {
+  print("Ай ай ай так незя))))")
+} else {
+  print(`${num1} ${operator} ${num2} = ${result}`)
+}
+
+
 
 // NaN
 // Infinity
