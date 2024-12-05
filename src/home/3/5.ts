@@ -27,20 +27,31 @@ let defender_score = 0
 let info_atack = 'Атакующий: '
 let info_defender = 'Обороняющийся: '
 
+defender_score += defender_forts
+if (defender_forts > 0){
+  info_defender += `${defender_forts} (крепость) + `
+}
+
 for (let atack_broski = 1; atack_broski <= attacking_legions; atack_broski++) {
   const atack_dice = random(1, 6)
   atack_score += atack_dice
-  info_atack += `${atack_dice} + `
+  info_atack += `${atack_dice}`
+  
+  if (atack_broski < attacking_legions){
+    info_atack += ' + '
+  }
 }
 
 for (let defender_broski = 1; defender_broski <= defender_legion; defender_broski++){
   const defender_dice = random(1, 6)
   defender_score += defender_dice
-  info_defender += `${defender_dice} + `
+  info_defender += `${defender_dice}`
+  
+  if (defender_broski < defender_legion){
+    info_defender += ' + '
+  }
 }
 
-defender_score += defender_forts
-info_defender += `${defender_forts} `
 
 info_atack += ' = '
 info_atack += atack_score
@@ -52,14 +63,3 @@ print(info_atack)
 print(info_defender)
 print(`Убитых атакующих: ${Math.floor(atack_score / 5)}`)
 print(`Убитых защищаюхся: ${Math.floor(defender_forts / 5)}`)
-
-// Обороняющийся
-// ...
-
-/*
-Сколько у тебя легионов в отряде: 3
-Сколько легионов в провинции: 2
-Сколько крепостей в провинции: 0
-Атакующий: 3 + 1 + 1 +  = 5   
-Обороняющийся: 5 + 5 + 0  = 10
-*/

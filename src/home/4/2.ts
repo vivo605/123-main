@@ -40,7 +40,8 @@ if (isNaN(result)) {
 }
 else if (!isFinite(result)) {
   print("Ай ай ай так незя))))")
-} else {
+}
+else {
   print(`${num1} ${operator} ${num2} = ${result}`)
 }
 

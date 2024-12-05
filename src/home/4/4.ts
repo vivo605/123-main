@@ -4,13 +4,18 @@ export {}
 // Создать функцию, которая запрашивает число с терминала. Если ввети не число, выводится сообщение об ошибке и нужно повторить ввод. 
 
 // нужен цикл
+
+
 function inputNumber(message: string): number {
-  const number = Number(input(message))
-  if (!isFinite(number)) { // TODO
-    print("Введи число!!!!")
-  }
-  else{
-    print("О молодец")
+  while (true) {
+    const text = input(message) // "123"
+    const n = Number(text) // 123
+    if (text === '' || !isFinite(n)) {
+      print("Введи число!!!!")
+    }
+    else {
+      return n
+    }
   }
 }
 
@@ -22,6 +27,9 @@ function inputNumber(message: string): number {
 
 const n1 = inputNumber("n1 = ")
 print(n1)
+
+const n2 = inputNumber("n2 = ")
+print(n2)
 // const n2 = inputNumber("n2 = ")
 
 

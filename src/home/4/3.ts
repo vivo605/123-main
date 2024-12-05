@@ -9,6 +9,7 @@ export {}
 // Добрый день, администратор!
 // Здравствуйте, Виталий!
 // Добрый вечер!
+// Здравствуйте!
 
 // function calulate(n1: number, operator: string, n2: number): number {
 //   if (operator === '+') {
@@ -22,7 +23,6 @@ export {}
 // const operator = input("Введите знак операции (+, -, *, /): ")
 
 // const result = calulate(num1, operator, num2)
-
 function greet(time_day ?:number, name ?:string) {
   if (time_day === undefined) {
     print(`ЗДАРОВА))))`)
@@ -43,5 +43,4 @@ function greet(time_day ?:number, name ?:string) {
 
 const time_day = Number(input("Сколька времени?: "))
 const name = input("Как вас зовут?: ")
-
-greet()
+greet(time_day, name)

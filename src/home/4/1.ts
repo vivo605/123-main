@@ -16,8 +16,3 @@ print(
     summator(2,7)
   )
 )
-
-// const l1 = summator(3,5)
-// const l2 = summator(2,7)
-// const result = summator(l1,l2)
-// print(result)

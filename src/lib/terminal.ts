@@ -6,7 +6,7 @@ interface Terminal {
 
 declare global {
   const input: (message?: string) => string;
-  const print: (message: string | number) => void;
+  const print: (message?: string | number) => void;
   const terminal: Terminal;
 }
 
