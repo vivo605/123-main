@@ -7,3 +7,7 @@ export{}
 // сперва принимать количество секунд(!), затем колбэк
 
 // ?
+
+declare const startTimer: any 
+
+startTimer(2, () => print('Hi!'))
