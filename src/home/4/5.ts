@@ -116,8 +116,6 @@ const print_info = (legions:number, forts?:number) => {
   print(info)
 }
 
-
-
 const start = () => {
   const attacking_legions = Number(input("Сколько у тебя легионов в отряде: "))
   const defender_legion = Number(input("Сколько легионов в провинции: ")) 
