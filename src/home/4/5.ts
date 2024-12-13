@@ -93,6 +93,7 @@ const print_info = (legions:number, forts?:number) => {
   if (forts) {
     score += forts*6
     info += `${forts*6} (крепость) ` // TODO: "+" между крепостями и легионами
+    info += '+ '
   }
 
   for (let i = 1; i <= legions; i++) {
@@ -107,7 +108,7 @@ const print_info = (legions:number, forts?:number) => {
   
   // Атакующий: 4 + 3 + 5 = 12 (-2 юнита)
   if (forts || legions) {
-    info += `${Math.floor(score / 5)} ` // TODO: " = 12 (-2 юнита)"
+    info += `(-${Math.floor(score / 5)} юнита)` // TODO: " = 12 (-2 юнита)"
   }
   else {
     info += ' -'
