@@ -2,7 +2,7 @@ import './lib'
 
 // import './lesson/3'
 
-import './home/5/4'
+import './home/5/3'
 
 // const array = [1,2,3]
 // const sum = (array: number[], n: number = 0) => {

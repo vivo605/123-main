@@ -7,12 +7,6 @@
 // 21 овца
 // 22-24 овцы
 // 25-30 овец
-//
-// .
-//Пример для 3:
-// 1 овца
-// 2 овцы
-// 3 овцы
 // zzz
 
 export{}
@@ -24,14 +18,14 @@ const intervalId = setInterval(
     () => {
         if (number < ovechi){
             number = number + 1
-            if (number == 1 || number == 21){
+            if (number % 10 == 1){
                 print(`${number} овца`)
             }
-            else if (number <= 2 || number <= 4 || number <= 22 || number <= 24){
+            else if (number % 10 == 2 || number % 10 == 3 || number % 10 == 4){
                 print(`${number} овцы`)
             }
-            else if (number <= 5 || number <= 20 || number <= 25 || number <= 30){
-                print(`${number} овец`)
+             else if (number % 10 == 0|| number % 10 == 5 || number % 10 == 6 || number % 10 == 7 || number % 10 == 8 || number % 10 == 9 || number % 10 == 10){
+                 print(`${number} овец`)
             }
         }
         else {
