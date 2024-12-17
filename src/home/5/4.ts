@@ -27,85 +27,30 @@
 export{}
 
 
-let number: number = 0; // Начальное количество овечек
-const ovechi: number = Number(input("Сколько овечвек?) ")); // Конечное количество овечек, измените по желанию
+let number: number = 0 // Начальное количество овечек
+const ovechi: number = Number(input("Сколько овечвек?) ")) // Конечное количество овечек, измените по желанию
 
-function printSheep(count: number): void {
+function sheep(count: number): string {
     if (count % 10 === 1 && count % 100 !== 11) {
-        print(`${count} овца`);
-    } else if ((count % 10 === 2 || count % 10 === 3 || count % 10 === 4) && (count % 100 !== 12 && count % 100 !== 13 && count % 100 !== 14)) {
-        print(`${count} овцы`);
+        return 'овца'
+    } else if ((count % 10 >= 2 && count % 10 <= 4) && (count % 100 < 12 || count % 100 > 14)) {
+        return 'овцы'
     } else {
-        print(`${count} овец`);
+        return 'овец'
     }
 }
 
 function startTimer(): void {
     const intervalId: NodeJS.Timeout = setInterval(() => {
         if (number < ovechi) {
-            number += 1;
-            printSheep(number);
+            number += 1
+            print(`${number} ${sheep(number)}`)
         } else {
-            print('ZZZZZZZZZZZZ');
-            clearInterval(intervalId);
+            print('ZZZZZZZZZZZZ')
+            clearInterval(intervalId)
         }
-    }, 1); // интервал 1000 мс (1 секунда)
+    }, 1) // интервал 1000 мс (1 секунда)
 }
 
 // Запустите таймер
-startTimer();
-
-
-//
-// const ovechi = Number(input("Сколько овечек считаем?)):"))
-//
-// function prints(number: number) {
-//     if (number < ovechi) {
-//         if (number % 10 == 1){
-//              print(`${number} овца`)
-//         }
-//         else if (number % 10 == 2 || number % 10 == 3 || number % 10 == 4){
-//              print(`${number} овцы`)
-//         }
-//         else if (number % 10 == 0|| number % 10 == 5 || number % 10 == 6 || number % 10 == 7 || number % 10 == 8 || number % 10 == 9 || number % 10 == 10){
-//              print(`${number} овец`)
-//         }
-//     }
-// }
-//
-//
-// function timer(){
-//     const intervalId = setInterval(
-//         () => {
-//             prints(ovechi)
-//             print('ZZZZZZZZZZZZ')
-//             clearInterval(intervalId)
-//         },
-//         1
-//     )
-// }
-
-
-// const intervalId = setInterval(
-    // () => {
-        // if (number < ovechi){
-        //     number = number + 1
-        //     if (number % 10 == 1){
-        //         print(`${number} овца`)
-        //     }
-        //     else if (number % 10 == 2 || number % 10 == 3 || number % 10 == 4){
-        //         print(`${number} овцы`)
-        //     }
-        //      else if (number % 10 == 0|| number % 10 == 5 || number % 10 == 6 || number % 10 == 7 || number % 10 == 8 || number % 10 == 9 || number % 10 == 10){
-        //          print(`${number} овец`)
-        //     }
-    //     },
-    //     else {
-    //         print('ZZZZZZZZZZZZ')
-    //         clearInterval(intervalId)
-    //     }
-    //     return 0
-    // },
-    // 1
-// )
-// clearInterval(ovechi) // остановить таймер
+startTimer()

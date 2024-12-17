@@ -92,8 +92,10 @@ const print_info = (legions:number, forts?:number) => {
 
   if (forts) {
     score += forts*6
-    info += `${forts*6} (крепость) ` // TODO: "+" между крепостями и легионами
-    info += '+ '
+    info += `${forts*6} (крепость)` // TODO: "+" между крепостями и легионами
+    if (legions > 0){
+      info += ' + '
+    }
   }
 
   for (let i = 1; i <= legions; i++) {
@@ -106,12 +108,11 @@ const print_info = (legions:number, forts?:number) => {
     }
   }
   
-  // Атакующий: 4 + 3 + 5 = 12 (-2 юнита)
   if (forts || legions) {
-    info += `(-${Math.floor(score / 5)} юнита)` // TODO: " = 12 (-2 юнита)"
+    info += ` = ${score} (-${Math.floor(score / 5)} юнита)`
   }
   else {
-    info += ' -'
+    info += 'потерь нет'
   }
   
   print(info)
@@ -127,3 +128,11 @@ const start = () => {
 }
 
 start()
+
+
+/*
+не хватает =
+2 0 2
+Атакующий: 3 + 1 = 4 (-0 юнита)
+Обороняющийся: 12 (крепость)  = 12 (-2 юнита)
+*/
