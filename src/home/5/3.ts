@@ -1,66 +1,22 @@
-import {clearInterval} from "node:timers";
-import { callbackify } from "node:util";
-
 export {}
-
 // 3. Таймер со счётчиком
 // Создать функцию, которая аналогична предыдущей,
-//   // только теперь вызывается каждую секунду
+// только теперь вызывается каждую секунду
 // ! указанное количество раз.
 // В функцию-колбэк сообщаем, который раз срабатывает таймер
 
-//  постоянный до остановки
-// const intervalId = setInterval(
-//     () => {
-//         print('выполняется через каждую 1 секунду')
-//     },
-//     1000
-// )
-// clearInterval(intervalId) // остановить таймер
 
-// function startTimer(second:number, callback: () => void) {
-//   const timeoutId = setTimeout(
-//       () => {
-//           print(`№${second}`)
-//           return callback();
-//       },
-//       second * 1000
-//   )
-// }
-
-// startTimer(
-//   Number(input('Количество раз: ')),
-//   () => print('СТОП!')
-// )
-
-
-// function startTimer(second: number, callback: () => void) {
-//   const timeoutId = setTimeout(() => {
-//     while (second < 0){
-//       second--
-//       print(second); // Исправлено: выводим second
-//     }
-//     callback();
-//   }, second * 1000);
-// }
-
-// startTimer(
-//   Number(input('Количество раз: ')),
-//   () => print('СТОП!')
-// )
-
-
-function startTimer(seconds: number, callback: (n1: number) => void) {
+function startTimer(count: number, callback: (i: number) => void) {
+  let i = 1
   const intervalId = setInterval(() => {
-      if (seconds > 0) {
-          print(seconds)
-      } else {
-          clearInterval(intervalId)
-      }
-  }, 1)
+    callback(i++)
+    if (i > count) {
+      clearInterval(intervalId)
+    }
+  }, 1000)
 }
 
 startTimer(
-  Number(input('Количество секунд: ')), 
-  () => print()
+  Number(input('Количество: ')), // 2
+  (i) => print(i)
 )
