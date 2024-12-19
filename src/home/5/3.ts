@@ -1,4 +1,5 @@
 import {clearInterval} from "node:timers";
+import { callbackify } from "node:util";
 
 export {}
 
@@ -49,12 +50,10 @@ export {}
 // )
 
 
-function startTimer(seconds: number, callback: () => void) {
+function startTimer(seconds: number, callback: (n1: number) => void) {
   const intervalId = setInterval(() => {
       if (seconds > 0) {
           print(seconds)
-          callback()
-
       } else {
           clearInterval(intervalId)
       }
