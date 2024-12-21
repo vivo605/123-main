@@ -3,6 +3,7 @@ export {}
 /**
  * Коммент для переменной
  */
+
 const name = input('Input name: ')
 print(name)
 
