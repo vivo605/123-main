@@ -27,12 +27,16 @@ const printTime = (time: number, pm: PM): string  => {
     return `${m}:${s}`
   }
 
-
   const hours = (time % (24 * 60 * 60) - minuts * 60 - second) / (60 * 60)
+  const h = `${(hours < 10) ? '0' : ''}${hours}:`
+
+  if (pm === 'h'){
+    return `${h}:${m}:${s}`
+  }
+
   const days = 0 // !!!
 
   print(
-    `${(hours < 10) ? '0' : ''}${hours}:`
   )
 }
 
