@@ -6,7 +6,38 @@ export {}
   Например:
   61, m: 01:01
   61, h: 00:01:01
+
+  s, m, h, d
 */
 
-// print(61, 'm') // '01:01
-// print(61, 'h') // '00:01:01'
+type PM = 's' | 'm' | 'h' | 'd'
+
+const printTime = (time: number, pm: PM): string  => {
+  const second = time % 60
+  const s = `${(second < 10) ? '0' : ''}${second}`
+
+  if (pm === 's'){
+    return s
+  }
+  
+  const minuts = (time % (60 * 60) - second) / 60
+  const m = `${(minuts < 10) ? '0' : ''}${minuts}:`
+
+  if (pm === 'm'){
+    return `${m}:${s}`
+  }
+
+
+  const hours = (time % (24 * 60 * 60) - minuts * 60 - second) / (60 * 60)
+  const days = 0 // !!!
+
+  print(
+    `${(hours < 10) ? '0' : ''}${hours}:`
+  )
+}
+
+
+// const time = Number(input('Сколько прошло секунд?: '))  
+
+printTime(61, 'm') // '01:01'
+// printTime(61, 'h') // '00:01:01'
