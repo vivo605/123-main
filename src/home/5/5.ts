@@ -4,7 +4,9 @@ export{}
 // Дописать inputNumber, который вторым параметром принимает функцию, она проверяет введённое число на соответствие заданным услоловиям.
 // Пока число не соответствует условию, просим ввести заново.
 
-const inputNumber = (message: string, validator?: (num: number) => boolean): number => {
+type Validator = (num: number) => boolean
+
+const inputNumber = (message: string, validator?: Validator): number => {
   while (true) {
     const text = input(message) // "123"
     const n = Number(text) // 123
