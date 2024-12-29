@@ -29,36 +29,30 @@ type PM = 's' | 'm' | 'h' | 'd'
 const printTime = (time: number, pm: PM): string => {
   const second = time % 60
   const s = `${(second < 10) ? '0' : ''}${second}`
-
-  if (pm === 's') {
-    return s;
-  }
   
   const minuts = Math.floor((time % (60 * 60)) / 60)
   const m = `${(minuts < 10) ? '0' : ''}${minuts}:`
 
-  if (pm === 'm') {
-    return `${m}${s}`
-  }
-
   const hours = Math.floor((time % (24 * 60 * 60)) / (60 * 60))
   const h = `${(hours < 10) ? '0' : ''}${hours}:`
 
-  if (pm === 'h') {
-    return `${h}${m}${s}`
-  }
 
   const days = Math.floor(time / (24 * 60 * 60))
   const d = `${(days < 10) ? '0' : ''}${days}:`
 
-  if (pm === 'd') {
-    return `${d}${h}${m}${s}`;
+  switch (pm) {
+    case 's':
+      return s
+    case 'm':
+      return `${m}${s}`
+    case 'h':
+      return `${h}${m}${s}`
+    case 'd':
+      return `${d}${h}${m}${s}`
   }
-
-  return ''
 }
 
-// Примеры использования
+
 print(printTime(3661, 'h'))
 print(printTime(60, 'm'))
 print(printTime(3600, 's'))

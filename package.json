@@ -8,6 +8,7 @@
   "dependencies": {
     "@types/node": "^22.5.4",
     "@types/readline-sync": "^1.4.8",
+    "prompt-sync": "^4.2.0",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {

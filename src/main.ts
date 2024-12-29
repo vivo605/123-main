@@ -2,4 +2,4 @@ import './lib'
 
 // import './lesson/6'
 
- import './home/6/4'
+ import './home/6/3'
