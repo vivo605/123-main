@@ -36,7 +36,6 @@ const printTime = (time: number, pm: PM): string => {
   const hours = Math.floor((time % (24 * 60 * 60)) / (60 * 60))
   const h = `${(hours < 10) ? '0' : ''}${hours}:`
 
-
   const days = Math.floor(time / (24 * 60 * 60))
   const d = `${(days < 10) ? '0' : ''}${days}:`
 
