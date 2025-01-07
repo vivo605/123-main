@@ -1,21 +1,28 @@
 import { printGreeting } from './texts'
+import { inputStartBalance } from './inputs'
 
-// напечатать приветствие
 printGreeting()
 
-// спросить стартовый баланс
 let balance = inputStartBalance()
 
 do {
-  // спросить цвет ставки (ч/к)
-  // спросить размер ставки
-  // сгенерировать случайный цвет (ч 30% / к 30% / з 40% )
-  // сообщить результат
-  // если цвета совпадают - увеличить баланс на ставку
-  // если цвета не совпадают - списать баланс ставки
-} while (true) // продолжать, пока есть деньги и игрок хочет продолжить
+  const playerColor = inputPlayerColor() // (ч/к) 
+  const bet = inputBet(balance)
+  const resultColor = generateRandomColor() // (ч 30% / к 30% / з 40% )
+
+  printResultColor(resultColor)
+
+  if (playerColor === resultColor) {
+    printWinnerText()
+    balance += bet
+  } else {
+    printLooserText()
+    balance -= bet
+  }
+} while (balance > 0 && playerWantContinue())
 
 // напечатать завершающий текст
-  // если нет денег то вышварнуть из казино))
-  // если выиграл, попросить не возвращаться
-  // если проиграл, но не всё, предложить поскорее возвращаться
+printBye()
+// если нет денег то вышварнуть из казино))
+// если выиграл, попросить не возвращаться
+// если проиграл, но не всё, предложить поскорее возвращаться
