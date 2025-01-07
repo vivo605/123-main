@@ -6,23 +6,21 @@ export{}
 
 // Ножницы — это бросок, который используется реже всего, с вероятностью попадания всего 29,6% в обычной игре в «Камень, ножницы, бумагу».
 
-type Types = 'Камень'| 'Ножницы'| 'Бумага'
+type Thing = 'Камень'| 'Ножницы'| 'Бумага'
 
-const start = input('Вы запустили игру "Камень, ножницы, бумага". Хотите поиграть? (Вводите + или -): ')
-
-const computer_moves = () => {
-  const randoms = random(29, 35);
+const generateComputerMove = () => {
+  const randoms = random(1, 100);
   
-  if (randoms < 32) {
-      return 'Ножницы';
-  } else if (randoms >= 35) {
-      return 'Камень';
+  if (randoms < 29) {
+    return 'Камень';
+  } else if (randoms >= 29+35) {
+    return 'Бумага';
   } else {
-      return 'Бумага';
+    return 'Ножницы';
   }
 }
 
-const valid = (message: string): Types | null => {
+const inputPlayerMove = (message: string): Thing | null => {
   const text = input(message);
   const n = Number(text);
   
@@ -42,7 +40,7 @@ const valid = (message: string): Types | null => {
   return null;
 }
 
-const winner = (playerMove: Types, computerMove: Types): string => {
+const checkWinner = (playerMove: Thing, computerMove: Thing): string => {
   if (playerMove === computerMove) {
     return "Ничья!";
   } 
@@ -58,24 +56,25 @@ const winner = (playerMove: Types, computerMove: Types): string => {
   }
 }
 
+const start = input('Вы запустили игру "Камень, ножницы, бумага". Хотите поиграть? (Вводите + или -): ')
 
 if (start === '+') {
-    while (true) {
-        const playerMove = valid('Чем ты хочешь походить (1 - Камень, 2 - Ножницы, 3 - Бумага): ');
-        
-        if (playerMove) {
-            const computerMove = computer_moves();
-            print(`Компьютер выбрал: ${computerMove}`);
-            const result = winner(playerMove, computerMove);
-            print(result);
-        }
-
-        const playAgain = input('Хотите сыграть еще раз? (да или нет): ');
-        if (playAgain.toLowerCase() !== 'yes') {
-            print('Спасибо за игру! Удачи!');
-            break;
-        }
+  while (true) {
+    const playerMove = inputPlayerMove('Чем ты хочешь походить (1 - Камень, 2 - Ножницы, 3 - Бумага): ');
+    
+    if (playerMove) {
+      const computerMove = generateComputerMove();
+      print(`Компьютер выбрал: ${computerMove}`);
+      const result = checkWinner(playerMove, computerMove);
+      print(result);
     }
+
+    const playAgain = input('Хотите сыграть еще раз? (+ или -): ');
+    if (playAgain !== '+') {
+      print('Спасибо за игру! Удачи!');
+      break;
+    }
+  }
 } 
 else{
   print('Жаль. Удачи)')
