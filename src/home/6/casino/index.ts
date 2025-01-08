@@ -1,5 +1,5 @@
 import { printGreeting } from './texts'
-import { inputStartBalance } from './inputs'
+import { inputStartBalance, inputPlayerColor } from './inputs'
 
 printGreeting()
 
