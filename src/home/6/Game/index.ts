@@ -6,7 +6,7 @@ export{}
 
 // Ножницы — это бросок, который используется реже всего, с вероятностью попадания всего 29,6% в обычной игре в «Камень, ножницы, бумагу».
 
-type Thing = 'Камень'| 'Ножницы'| 'Бумага'
+type Type = 'Камень'| 'Ножницы'| 'Бумага'
 
 const generateComputerMove = () => {
   const randoms = random(1, 100);
@@ -20,18 +20,18 @@ const generateComputerMove = () => {
   }
 }
 
-const inputPlayerMove = (message: string): Thing | null => {
+const inputPlayerMove = (message: string): Type | null => {
   const text = input(message);
   const n = Number(text);
   
   if (text !== '' && isFinite(n)) {
     switch (n) {
       case 1:
-        return 'Камень';
+        return 'Камень'
       case 2:
-        return 'Ножницы';
+        return 'Ножницы'
       case 3:
-        return 'Бумага';
+        return 'Бумага'
       default:
         print("Неверный ввод. Выберите 1, 2 или 3.");
         return null;
@@ -40,7 +40,7 @@ const inputPlayerMove = (message: string): Thing | null => {
   return null;
 }
 
-const checkWinner = (playerMove: Thing, computerMove: Thing): string => {
+const checkWinner = (playerMove: Type, computerMove: Type): string => {
   if (playerMove === computerMove) {
     return "Ничья!";
   } 
