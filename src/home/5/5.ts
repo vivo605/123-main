@@ -10,7 +10,6 @@ const inputNumber = (message: string, validator?: Validator): number => {
   while (true) {
     const text = input(message) // "123"
     const n = Number(text) // 123
-    // const isValid = (validator === undefined) ? true : validator(n)
     if (text !== '' && isFinite(n) && (validator?.(n) ?? true)) {
       return n
     }
