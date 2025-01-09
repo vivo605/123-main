@@ -72,6 +72,7 @@ if (start === '+') {
     const playAgain = input('Хотите сыграть еще раз? (+ или -): ');
     if (playAgain !== '+') {
       print('Спасибо за игру! Удачи!');
+      console.clear()
       break;
     }
   }
@@ -79,3 +80,4 @@ if (start === '+') {
 else{
   print('Жаль. Удачи)')
 }
+// TODO: играть против компьютера или второго игрока
