@@ -17,7 +17,8 @@ import {
 export const startGame = () => {
   printGreeting()
 
-  let balance = inputStartBalance()
+  const startBalance = inputStartBalance()
+  let balance = startBalance
 
   do {
     console.clear()
@@ -37,5 +38,5 @@ export const startGame = () => {
   } while (balance > 0 && playerWantContinue())
 
   console.clear()
-  printBye()
+  printBye(balance, startBalance)
 }

@@ -1,3 +1,4 @@
+import { inputStartBalance } from './inputs'
 import { RandomColor, translateColor } from './types'
 
 export const printGreeting = () => {
@@ -20,6 +21,14 @@ export const printLooserText = () => {
 // если нет денег то вышварнуть из казино))
 // если выиграл, попросить не возвращаться
 // если проиграл, но не всё, предложить поскорее возвращаться
-export const printBye = () =>{
-  print('А ты хорош)')
+export const printBye = (balance: number, startBalance: number) =>{
+  if (balance <= 0){
+    print('Окак, ты бомж)))) Возвращайся с деньгами!')
+  }
+  else if (balance > startBalance){
+    print('Ты выйграл?)) Иди отсюда))')
+  }
+  else{
+    print('Ты проиграл?) Ну тогда давай за деньгами иди и обратно сюда отыграть)))')
+  }
 }
