@@ -1,4 +1,4 @@
-import { inputNumber } from './lib'
+import { inputNumber } from '../../lib'
 import { PlayerColor, RandomColor } from './types'
 
 export const inputStartBalance = () => inputNumber(

@@ -1,3 +1,9 @@
+// TODO
+// 1. избавиться от null, использовать inputNumber
+// 2. добавить выбор, с кем играть: против компьютера или другого игрока
+// - перед вторым игроком нужно очистить экран
+// - выбор без копипасты
+
 export{}
 
 // можешь попробовать сделать игру камень - ножницы - бумага
@@ -11,69 +17,66 @@ type Types = 'Камень'| 'Ножницы'| 'Бумага'
 const start = input('Вы запустили игру "Камень, ножницы, бумага". Хотите поиграть? (Вводите + или -): ')
 
 const computer_moves = () => {
-  const randoms = random(29, 35);
+  const randoms = random(29, 35)
   
   if (randoms < 32) {
-    return 'Ножницы';
+    return 'Ножницы'
   } else if (randoms >= 35) {
-    return 'Камень';
+    return 'Камень'
   } else {
-    return 'Бумага';
+    return 'Бумага'
   }
 }
 
 const valid = (message: string): Types | null => {
-  const text = input(message);
-  const n = Number(text);
+  const text = input(message)
+  const n = Number(text)
   
   if (text !== '' && isFinite(n)) {
   switch (n) {
-    case 1:
-    return 'Камень';
-    case 2:
-    return 'Ножницы';
-    case 3:
-    return 'Бумага';
+    case 1: return 'Камень'
+    case 2: return 'Ножницы'
+    case 3: return 'Бумага'
     default:
-    print("Неверный ввод. Выберите 1, 2 или 3.");
-    return null;
+    print("Неверный ввод. Выберите 1, 2 или 3.")
+    return null
   }
   }
-  return null;
+  return null
 }
 
 const winner = (playerMove: Types, computerMove: Types): string => {
   if (playerMove === computerMove) {
-  return "Ничья!";
+    return "Ничья!"
   } 
   else if (
-  (playerMove === 'Камень' && computerMove === 'Ножницы') ||
-  (playerMove === 'Ножницы' && computerMove === 'Бумага') ||
-  (playerMove === 'Бумага' && computerMove === 'Камень')
+    (playerMove === 'Камень' && computerMove === 'Ножницы') ||
+    (playerMove === 'Ножницы' && computerMove === 'Бумага') ||
+    (playerMove === 'Бумага' && computerMove === 'Камень')
   ) {
-  return "Вы выиграли!";
+    return "Вы выиграли!"
   } 
   else {
-  return "Компьютер выиграл!";
+    return "Компьютер выиграл!"
   }
 }
 
 
 if (start === '+') {
   while (true) {
-    const playerMove = valid('Чем ты хочешь походить (1 - Камень, 2 - Ножницы, 3 - Бумага): ');
+    const playerMove = valid('Чем ты хочешь походить (1 - Камень, 2 - Ножницы, 3 - Бумага): ')
     
     if (playerMove) {
-      const computerMove = computer_moves();
-      print(`Компьютер выбрал: ${computerMove}`);
-      const result = winner(playerMove, computerMove);
-      print(result);
+      const computerMove = computer_moves()
+      print(`Компьютер выбрал: ${computerMove}`)
+      const result = winner(playerMove, computerMove)
+      print(result)
     }
 
-    const playAgain = input('Хотите сыграть еще раз? (да или нет): ');
+    const playAgain = input('Хотите сыграть еще раз? (да или нет): ')
     if (playAgain.toLowerCase() !== 'yes') {
-      print('Спасибо за игру! Удачи!');
-      break;
+      print('Спасибо за игру! Удачи!')
+      break
     }
   }
 } 
