@@ -91,9 +91,21 @@ const Lib = {
   printHello: (name: string) => print(`Hello, ${name}`),
   readName: () => input('What is your name? '),
 }
+Lib.printHello(
+  Lib.readName()
+)
 
-// Lib.printHello(
-//   Lib.readName()
+// class Libery {
+//   printHello(name: string): void {
+//     print(`Hello, ${name}`)
+//   }
+//   readName(): string {
+//     return input('What is your name? ')
+//   }
+// }
+// const lib = new Libery()
+// lib.printHello(
+//   lib.readName()
 // )
 
 
@@ -130,5 +142,71 @@ object1.value++
 object2.value // 2
 object3.value // 1
 console.log(object3.value)
+
+const setName = (user: Readonly<User>, name: string) => {
+  // user.name = name
+}
+setName(user, 'noname')
+user.name // noname
+
+let n = 1
+const setNumber = (n: number) => {
+  n = 10
+}
+setNumber(n)
+n // 1
+
+
+
+// --- ОБЪЕДИНЕНИЯ ТИПОВ ---
+
+// смешанные типы
+
+type Student = User & {
+  rating: number
+}
+
+const student: Student = {
+  name: user.name,
+  age: user.age,
+  rating: 10,
+}
+
+// более общие типы подходят частным подмножествам
+getUserInfo(student) // Vit (15)
+// но не наоборот
+// const student2: Student = user // Ошибка: Свойство "rating" отсутствует
+
+// подмножествам недоступны свойства общего типа
+const person: User = student
+// person.rating // Ошибка: Свойство "rating" не существует в типе "User"
+
+// --- ПРОВЕРКА ТИПОВ ---
+// важная особенность JS: проверки типов делаются на этапе выполнения!
+// не на этапе компилляции (это одновременно упрощение и усложнение)
+
+const isStudent = (user: User): user is Student => (
+  typeof (user as Student).rating === 'number'
+)
+
+if (isStudent(person)) {
+  person.rating = 8 // ошибки нету
+}
+
+const isUser = (value: unknown): value is User => (
+  typeof value === 'object'
+  && 
+  value !== null
+  &&
+  typeof (value as User).age === 'number'
+  &&
+  typeof (value as User).name === 'string'
+)
+
+let smth = input() as unknown
+
+if (isUser(smth)) { // проверять можем абсолютно любые значения
+  smth.name // здесь мы проверили, что это User,иначе сюда мы не зайдём
+}
 
 

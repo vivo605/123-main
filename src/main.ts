@@ -1,5 +1,5 @@
 import './lib'
 
-import './lesson/7'
+// import './lesson/test'
 
-// import './home/6/casino'
+// import './home/6/4'

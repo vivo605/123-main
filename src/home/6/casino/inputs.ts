@@ -22,7 +22,7 @@ export const inputPlayerColor = (): PlayerColor => {
   const choise = inputNumber(
     'Выберите цвет (1 - красное, 2 - черное): ', 
     (n) => n == 1 || n == 2
-  ) as 1 | 2
+  )
 
   switch (choise) {
     case 1:
@@ -51,7 +51,7 @@ export const playerWantContinue = (): boolean => {
   const choise = inputNumber(
     'Хотите сыграть еще раз? (1 - да, 2 - нет): ', 
     (n) => n == 1 || n == 2
-  ) as 1 | 2
+  )
 
   switch (choise) {
     case 1:

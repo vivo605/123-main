@@ -1,85 +1,131 @@
+
+// 2-3 попытки
+// TODO: играть против компьютера или второго игрока
 // TODO
 // 1. избавиться от null, использовать inputNumber
 // 2. добавить выбор, с кем играть: против компьютера или другого игрока
 // - перед вторым игроком нужно очистить экран
 // - выбор без копипасты
-
-export{}
-
-// можешь попробовать сделать игру камень - ножницы - бумага
-
-// По статистике, чаще всего в игре «Камень, ножницы, бумага» бросают «камень» (35,4%).
-
 // Ножницы — это бросок, который используется реже всего, с вероятностью попадания всего 29,6% в обычной игре в «Камень, ножницы, бумагу».
 
-type Types = 'Камень'| 'Ножницы'| 'Бумага'
+import { inputNumber } from '../lib'
 
-const start = input('Вы запустили игру "Камень, ножницы, бумага". Хотите поиграть? (Вводите + или -): ')
+type Thing = 'Камень'| 'Ножницы'| 'Бумага'
+type Winner = 1 | 2 | 0
 
-const computer_moves = () => {
-  const randoms = random(29, 35)
+const generateComputerMove = () => {
+  const randoms = random(1, 100)
   
-  if (randoms < 32) {
-    return 'Ножницы'
-  } else if (randoms >= 35) {
+  if (randoms < 29) {
     return 'Камень'
-  } else {
+  } else if (randoms >= 29+35) {
     return 'Бумага'
+  } else {
+    return 'Ножницы'
   }
 }
 
-const valid = (message: string): Types | null => {
-  const text = input(message)
-  const n = Number(text)
+const inputPlayerMove = (): Thing => {
+  const n = inputNumber(
+    'Чем ты хочешь походить (1 - Камень, 2 - Ножницы, 3 - Бумага): ',
+    (n) => n == 1 || n == 2 || n == 3
+  )
   
-  if (text !== '' && isFinite(n)) {
   switch (n) {
-    case 1: return 'Камень'
-    case 2: return 'Ножницы'
-    case 3: return 'Бумага'
-    default:
-    print("Неверный ввод. Выберите 1, 2 или 3.")
-    return null
+    case 1:
+      return 'Камень'
+    case 2:
+      return 'Ножницы'
+    case 3:
+      return 'Бумага'
   }
-  }
-  return null
 }
 
-const winner = (playerMove: Types, computerMove: Types): string => {
+const checkWinner = (playerMove: Thing, computerMove: Thing): Winner=> {
   if (playerMove === computerMove) {
-    return "Ничья!"
+    return 0 // "Ничья!"
   } 
   else if (
     (playerMove === 'Камень' && computerMove === 'Ножницы') ||
     (playerMove === 'Ножницы' && computerMove === 'Бумага') ||
     (playerMove === 'Бумага' && computerMove === 'Камень')
   ) {
-    return "Вы выиграли!"
+    return 1
   } 
   else {
-    return "Компьютер выиграл!"
+    return 2 // "Компьютер выиграл!"
   }
 }
 
+const inputOpponentPlayerMove = () => {
+  console.clear()
+  const move = inputPlayerMove()
+  console.clear()
+  return move
+}
 
-if (start === '+') {
+const inputOpponentComputerMove = () => {
+  const move = generateComputerMove()
+  print(`Компьютер выбрал: ${move}`)
+  return move
+}
+
+const startGame = (): void => {
+  let score_player_first = 0
+  let score_player_second = 0
+
+  const start = inputNumber(
+    'Вы запустили игру "Камень, ножницы, бумага". Хотите поиграть? (1 - да, 2 - нет): ',
+    n => n == 1 || n == 2
+  )
+
+  if (start == 2) {
+    return print('Жаль. Удачи)')
+  }
+
+  const compOrPlayer = inputNumber(
+    'Вы будете играть в крестики нолики с человеком или с компом (1 - с компом 2 - с человеком: ',
+    n => n == 1 || n == 2
+  )
+
+
+  const inputOpponentMove = (
+    compOrPlayer === 1 
+      ? inputOpponentComputerMove
+      : inputOpponentPlayerMove
+  )
+
+  // TODO: 2 функции, аналогично inputOpponentMove
+  // const printWinner
+
   while (true) {
-    const playerMove = valid('Чем ты хочешь походить (1 - Камень, 2 - Ножницы, 3 - Бумага): ')
-    
-    if (playerMove) {
-      const computerMove = computer_moves()
-      print(`Компьютер выбрал: ${computerMove}`)
-      const result = winner(playerMove, computerMove)
-      print(result)
-    }
+    const firstPlayerMove = inputPlayerMove()
+    const secondPlayerMove = inputOpponentMove()
+    const winner = checkWinner(firstPlayerMove, secondPlayerMove)
 
-    const playAgain = input('Хотите сыграть еще раз? (да или нет): ')
-    if (playAgain.toLowerCase() !== 'yes') {
-      print('Спасибо за игру! Удачи!')
-      break
+    // printWinner(winner)
+    
+    if (winner === 1){
+      // print('Вы выиграли! Вы молодец))')
+      score_player_first++
+      if (score_player_first === 2) {
+        return print('Игрок ты выйграл)')
+      }
     }
+    else if (winner === 2){
+      // print('Вы проигралли) Вы лох))))')
+      score_player_second++
+      if(score_player_second === 2) {
+        return print('Ну ты лох тебя ии обыграл)))')
+      }
+    }
+    // else{
+    //   print('Ничья пупсики))')
+    // }
+
+    print('Ну что новый раунд)')
+    console.clear()
   }
-} 
-else{
-  print('Жаль. Удачи)')
 }
+
+startGame()
