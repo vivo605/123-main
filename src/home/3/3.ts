@@ -20,7 +20,6 @@ export{}
 // for (let row = 1; row <= size; row++) {
 //   table += `\n${row} | `
 //   for (let column = 1; column >= size ; column++) {
-//     TODO
 //   }
 // }
 

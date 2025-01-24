@@ -92,7 +92,7 @@ const print_info = (legions:number, forts?:number) => {
 
   if (forts) {
     score += forts*6
-    info += `${forts*6} (крепость)` // TODO: "+" между крепостями и легионами
+    info += `${forts*6} (крепость)`
     if (legions > 0){
       info += ' + '
     }

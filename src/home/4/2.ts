@@ -9,8 +9,6 @@ export {}
 // "2 * 3 = 6"
 // При делении на 0 вместо ответа написать сообщение с ошибкой.
 
-// TODO
-
 function calulate(n1: number, operator: string, n2: number): number {
   if (operator === '+') {
     return n1 + n2
