@@ -5,6 +5,7 @@ export {}
 type User = {
   name: string
   age: number
+  bio?: string
 }
 
 // структура - переменная, внутри которой хранятся другие переменные (свойства/properties)
@@ -210,3 +211,150 @@ if (isUser(smth)) { // проверять можем абсолютно любы
 }
 
 
+
+// вариативные типы
+
+type Client = {
+  company: true
+  representative: User 
+} | { 
+  company: false
+  name: string 
+}
+
+const entity: Client = {
+  company: true,
+  representative: user,
+}
+
+const individual: Client = {
+  company: false,
+  name: 'Tom',
+}
+
+const greetClient = (client: Client) => {
+  if (client.company) {
+    print(`Здравствуйте, ${client.representative.name}!`)
+  } else {
+    print(`Приветствуем, ${client.name}.`)
+  }
+}
+
+greetClient(entity) // `Здравствуйте, Vit!`
+greetClient(individual) // `Приветствуем, Tom.`
+
+
+
+// --- СОПОСТАВЛЕНИЯ (отличие от структуры) ---
+
+// тип
+type Dictionary = {
+  // ключ всегда string | number, либо их вариации, значение любое
+  [key in string]: string // en-ru
+}
+
+// type Dictionary = {
+//   // только для string | number, не для пользовательских перечислений
+//   [key: string]: string // en-ru
+//   test: string
+// }
+
+// создание хранилища
+// const dictionary: Dictionary = {}
+const word = 'melone'
+const dictionary: Dictionary = {
+  apple: 'яблоко',
+  'pear txt': 'груша',
+  [word]: 'дыня',
+  // 'sdsaasd': undefined
+}
+
+// установка значений
+dictionary['apple'] = 'яблоко'
+dictionary['pear'] = 'груша'
+// dictionary.melone = 'дыня' // так тоже можно, но НЕ НУЖНО - сложнее различать структуры от сопоставлений
+
+const w = dictionary['asd']
+print(dictionary['apple']) // яблоко
+
+// удаление значений
+delete dictionary['melone']
+
+if (dictionary['asd']) {}
+if (typeof dictionary['asd'] === 'undefined') {}
+if ('asd' in dictionary) {}
+
+
+user.bio = undefined
+if ('bio' in user) {} // true
+delete user.bio
+if ('bio' in user) {} // false
+
+// вывод на консоль аналогичный - для js это такой же объект, как и структура
+console.log(dictionary)
+// { apple: 'яблоко', 'pear txt': 'груша', pear: 'груша' }
+
+// деструктуризация сопоставления также аналогична
+const { apple, pear } = dictionary
+
+// итерация - перебор всех значений в словаре
+
+for (const eng in dictionary) {
+  const ru = dictionary[eng]
+  print(`${eng} - ${ru}`)
+}
+for (const key in dictionary) {
+  const value = dictionary[key]! // опасно, но в этом случае можно
+  print(`${key} - ${value}`)
+}
+
+/*
+Ограничения свойств объектов:
+  структура - фиксированные названия, любые типы
+  сопоставление - любые названия, фиксированный тип
+*/
+
+// лучше не использовать числа в качестве ключей
+// number/enum key
+
+type Variant = 1 | 2 | 3
+
+type VariantsText = {
+  // in - для пользовательских перечислений, относящихся к string | number
+  [key in Variant]: string
+}
+
+// const texts: VariantsText = {
+//   [1]: 'one',
+//   [2]: 'two',
+//   [3]: 'three',
+// }
+
+const texts = {
+  [1]: 'one',
+  [2]: 'two',
+  [3]: 'three',
+} as const satisfies VariantsText
+
+const text = texts[1]
+
+for (const v in texts) {
+  const text = texts[Number(v) as Variant]
+}
+
+
+type Order = {
+  user: User
+  address: {
+    street: string
+    house: number
+  }
+}
+const order: Order = {
+  // user: user,
+  user,
+  address: {
+    street: '',
+    house: 12,
+  }
+}
