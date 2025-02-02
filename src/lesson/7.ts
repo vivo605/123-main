@@ -12,6 +12,10 @@ type User = {
 const user: User = {
   name: 'Vit',
   age: 15,
+  // address: {
+  //   street: 'name',
+  //   house: 12,
+  // }
 } // as const
 
 // { } - интерпретируются как объект там где передаётся значение (иначе означают блок команд)
@@ -167,11 +171,21 @@ type Student = User & {
   rating: number
 }
 
-const student: Student = {
-  name: user.name,
-  age: user.age,
-  rating: 10,
-}
+// const student: Student = {
+//   name: user.name,
+//   age: user.age,
+//   rating: 10,
+// }
+// const student: Student = {
+//   ...user,
+//   rating: 10,
+// }
+const student: Student = Object.assign(
+  structuredClone(user), 
+  {
+    rating: 10,
+  }
+)
 
 // более общие типы подходят частным подмножествам
 getUserInfo(student) // Vit (15)

@@ -1,3 +1,5 @@
+import { isAbsolute } from "path"
+
 export {}
 
 /*
@@ -30,9 +32,9 @@ const greetClient = (client: Client) => {
 
   3. numberInfo
   Создать функцию, которая принимает число и возвращает информацию для будущих проверок, является ли оно:
-  - корректным (не NaN)
-  - целым, дробным или бесконечным то бан
-  - положительным или отрицательным (для целых или дробных)
+  - корректным (не NaN или не бесконечность)
+  - целым, дробным или бесконечным (некорректное и не NaN)
+  - положительным или отрицательным (для целых, дробных или бесконечных) или ноль (для целых или дробных)
   - чётным или нечётным (для целых)
 
   а также
@@ -47,11 +49,57 @@ const greetClient = (client: Client) => {
 
 */
 
-// const n = Number(input('> '))
-// const info = numberInfo(n)
-// if (info.isCorrect) {
-//   info.isPositive
-// } else {
-//   // info.isPositive
-// }
+// abstract
+type CorrectNumber = {
+  isCorrect: true
+}
+//Todo IntegerNumber
+//Todo FloatNumber
+
+// abstract
+type IncorrectNumber = {
+  isCorrect: false
+}
+
+type InfinityNumber = IncorrectNumber & {
+  isInfinity: true
+  sign: 'positive' | 'negative'
+}
+type NotNumber = IncorrectNumber & {
+  isInfinity: false
+}
+
+type NumberInfo = CorrectNumber | (InfinityNumber | NotNumber)
+
+const numberInfo = (n: number): NumberInfo => {
+  if (isFinite(n)){
+    return {
+      isCorrect: true,
+    } satisfies CorrectNumber
+  } else {
+    const isInfinity = !isNaN(n)
+    if (isInfinity) {
+      return {
+        isCorrect: false,
+        isInfinity,
+        sign: n > 0 ? 'positive' : 'negative',
+      } satisfies InfinityNumber
+    } else {
+      return {
+        isCorrect: false,
+        isInfinity,
+      } satisfies NotNumber
+    }
+  }
+}
+
+
+// start
+const n = Number(input('> '))
+const info = numberInfo(n)
+if (!info.isCorrect) {
+  info.isInfinity
+} else {
+  // info.isPositive
+}
 
