@@ -35,6 +35,16 @@ type Timer = {
 }
 
 const createTimer = (settings: TimerSettings): Timer => {
+  while (settings.count !== settings.count){
+    const test = {
+      timer.start,
+      timer.isActive ,
+      settings.interval,
+      settings.count,
+      settings.onTimeout(settings.count),
+      timer.stop
+    }
+  } 
   return timer
 }
 
