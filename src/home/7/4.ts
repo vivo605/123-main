@@ -15,38 +15,45 @@ export {}
   - запущен ли
   - функцию запуска (можно указать новый интервал и количество срабатываний)
   - функцию остановки
-*/
+  // вернуть объект
+  
+  const giveBirthChild = (name: string): User => {
+    return {
+      name: name,
+      age: 0,
+    }
+  }
+  const child: User = giveBirthChild('Maxim')
 
+*/
 type TimerSettings = {
-  interval: number
-  count: number
-  onTimeout: (i: number) => void
-  onTimerStopped: () => void
-}
+  interval: number;
+  count: number;
+  onTimeout: (i: number) => void;
+  onTimerStopped: () => void;
+};
 
 type Timer = {
-  isActive: boolean
-  settings: {
-    interval: number
-    count: number
-  }
-  start: () => void
-  stop: () => void
-}
+  isActive: boolean;
+  settings: TimerSettings;
+  start: () => void;
+  stop: () => void;
+};
 
 const createTimer = (settings: TimerSettings): Timer => {
-  while (settings.count !== settings.count){
-    const test = {
-      timer.start,
-      timer.isActive ,
-      settings.interval,
-      settings.count,
-      settings.onTimeout(settings.count),
-      timer.stop
-    }
-  } 
-  return timer
-}
+  const timer = {
+    isActive: false,
+    settings,
+    start: () => {
+      const run = input('Запустить таймер (yes or no): ')
+    },
+    stop: () => {
+      const stop = input('Остановить таймер (yes or no): ')
+    },
+  };
+
+  return timer;
+};
 
 let totalCount = 0
 
