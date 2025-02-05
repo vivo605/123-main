@@ -4,7 +4,6 @@ function isPositive(num: number): num is number {
   return num > 0;
 }
 
-// Функция, которая возвращает положительное число
 export const homework = <N extends number>(validator?: Validator<N>) => {
   while (true) {
     const randomNum = Math.random() * 100;
