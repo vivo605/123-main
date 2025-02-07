@@ -27,52 +27,81 @@ export {}
 
 */
 type TimerSettings = {
-  interval: number;
-  count: number;
-  onTimeout: (i: number) => void;
-  onTimerStopped: () => void;
-};
+  interval: number
+  count: number
+  onTimeout: (i: number) => void
+  onTimerStopped: () => void
+}
 
 type Timer = {
-  isActive: boolean;
-  settings: TimerSettings;
-  start: () => void;
-  stop: () => void;
-};
+  isActive: boolean
+  settings: TimerSettings
+  start: () => void
+  stop: () => void
+}
+
 
 const createTimer = (settings: TimerSettings): Timer => {
+  let id: NodeJS.Timeout 
   const timer = {
     isActive: false,
     settings,
     start: () => {
-      const run = input('Запустить таймер (yes or no): ')
+      let i = 0
+      timer.isActive = true
+      id = setInterval(() => {
+        i++
+        settings.onTimeout(i)
+        if (i === settings.count){
+          timer.isActive = false
+          clearInterval(id)
+          settings.onTimerStopped()
+        }
+      }, settings.interval*1000)
     },
     stop: () => {
-      const stop = input('Остановить таймер (yes or no): ')
+      timer.isActive = false
+      clearInterval(id)
+      settings.onTimerStopped() //просто печатает)
     },
-  };
+  }
+  
+  return timer
+}
 
-  return timer;
-};
+// start
 
 let totalCount = 0
 
 const timer = createTimer({
-  interval: 1,
-  count: 5,
+  interval: 0.5,
+  count: 3,
   onTimeout: (i) => {
     print(`№${i}`)
+    totalCount++
   },
-  onTimerStopped() {
+  onTimerStopped () {
     print(`Таймер остановлен, количество срабатываний: ${totalCount}`)
+    console.log(timer.isActive) // false
   },
 })
-console.log('timer', timer)
+// console.log('timer', timer)
 
-timer.start()
-timer.start() // не должно срабатывать побочных эффектов
-console.log(timer.isActive) // true
-timer.stop()
 console.log(timer.isActive) // false
-console.log(timer.settings) // interval count
-// timer.isActive = true // здесь должна быть ошибка
+timer.start()
+console.log(timer.isActive) // true
+setTimeout(
+  () => {
+    timer.stop()
+    console.log(timer.isActive) // false
+  },
+  1000,
+)
+// console.log(timer.isActive, timer.isActive = false) // false
+
+// timer.start() // не должно срабатывать побочных эффектов
+// console.log(timer.isActive) // true
+// timer.stop()
+// console.log(timer.isActive) // false
+// console.log(timer.settings) // interval count
+// // timer.isActive = true // здесь должна быть ошибка

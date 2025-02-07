@@ -12,7 +12,7 @@ export{}
 // )
 
 function startTimer(second:number, callback: () => void) {
-  const timeoutId = setTimeout(
+  setTimeout(
     callback,
     second * 1000
   )
