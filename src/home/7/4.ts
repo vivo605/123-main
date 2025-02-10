@@ -1,3 +1,5 @@
+import { count } from "console"
+
 export {}
 
 /*
@@ -30,11 +32,11 @@ type TimerSettings = {
   interval: number
   count: number
   onTimeout: (i: number) => void
-  onTimerStopped: () => void
+  onTimerStopped: () => void  
 }
 
 type Timer = {
-  isActive: boolean
+  readonly isActive: boolean
   settings: TimerSettings
   start: () => void
   stop: () => void
@@ -74,8 +76,8 @@ const createTimer = (settings: TimerSettings): Timer => {
 let totalCount = 0
 
 const timer = createTimer({
-  interval: 0.5,
-  count: 3,
+  interval: 1,
+  count: 10,
   onTimeout: (i) => {
     print(`№${i}`)
     totalCount++
@@ -87,15 +89,14 @@ const timer = createTimer({
 })
 // console.log('timer', timer)
 
-console.log(timer.isActive) // false
+// timer.isActive = true // TODO: должна подтсвечиваться ошибка (readonly)
 timer.start()
-console.log(timer.isActive) // true
 setTimeout(
   () => {
     timer.stop()
     console.log(timer.isActive) // false
   },
-  1000,
+  1000
 )
 // console.log(timer.isActive, timer.isActive = false) // false
 
