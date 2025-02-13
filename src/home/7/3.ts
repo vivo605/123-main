@@ -49,44 +49,44 @@ const greetClient = (client: Client) => {
 
 // abstract
 type CorrectNumber = {
-  isCorrect: true
+  isCorrect: true;
+  isPositive: boolean; // Optional property to indicate if the number is positive
 }
-//Todo IntegerNumber
-//Todo FloatNumber
 
-// abstract
 type IncorrectNumber = {
-  isCorrect: false
+  isCorrect: false;
 }
 
 type InfinityNumber = IncorrectNumber & {
-  isInfinity: true
-  sign: 'positive' | 'negative'
-}
-type NotNumber = IncorrectNumber & {
-  isInfinity: false
+  isInfinity: true;
+  sign: 'positive' | 'negative';
 }
 
-type NumberInfo = CorrectNumber | (InfinityNumber | NotNumber)
+type NotNumber = IncorrectNumber & {
+  isInfinity: false;
+}
+
+type NumberInfo = CorrectNumber | InfinityNumber | NotNumber;
 
 const numberInfo = (n: number): NumberInfo => {
-  if (isFinite(n)){
+  if (isFinite(n)) {
     return {
       isCorrect: true,
-    } satisfies CorrectNumber
+      isPositive: n > 0, 
+    } satisfies CorrectNumber;
   } else {
-    const isInfinity = !isNaN(n)
+    const isInfinity = !isNaN(n);
     if (isInfinity) {
       return {
         isCorrect: false,
-        isInfinity,
+        isInfinity: true,
         sign: n > 0 ? 'positive' : 'negative',
-      } satisfies InfinityNumber
+      } satisfies InfinityNumber;
     } else {
       return {
         isCorrect: false,
-        isInfinity,
-      } satisfies NotNumber
+        isInfinity: false,
+      } satisfies NotNumber;
     }
   }
 }

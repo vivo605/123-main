@@ -1,5 +1,3 @@
-import { count } from "console"
-
 export {}
 
 /*
@@ -29,14 +27,16 @@ export {}
 
 */
 type TimerSettings = {
+  readonly count: number
+
   interval: number
-  count: number
   onTimeout: (i: number) => void
   onTimerStopped: () => void  
 }
 
 type Timer = {
   readonly isActive: boolean
+
   settings: TimerSettings
   start: () => void
   stop: () => void
@@ -94,11 +94,8 @@ timer.start()
 setTimeout(
   () => {
     timer.stop()
-    console.log(timer.isActive) // false
-  },
-  1000
-)
-// console.log(timer.isActive, timer.isActive = false) // false
+    console.log(timer.isActive)
+  },timer.settings.count * 1000)
 
 // timer.start() // не должно срабатывать побочных эффектов
 // console.log(timer.isActive) // true
