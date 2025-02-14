@@ -16,5 +16,8 @@
         "command": "npm --silent start"
       }
     ]
+  },
+  "files.associations": {
+    "iostream": "cpp"
   }
 }
